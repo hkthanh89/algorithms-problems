@@ -34,6 +34,47 @@ def is_anagram(s, t)
   return true
 end
 
+# @param {String} s
+# @param {String} t
+# @return {Boolean}
+def is_anagram(s, t)
+  s_length = s.length
+  t_length = t.length
+
+  return false if s_length !=  t_length
+  
+  hs = {}
+  i = 0
+  while i < s_length
+    char = s[i]
+    if hs[char]
+      hs[char] += 1
+    else
+      hs[char] = 1
+    end
+
+    i += 1
+  end
+
+  i = 0
+  while i < t_length
+    char = t[i]
+    return false unless hs[char]
+
+    if hs[char]
+      hs[char] -= 1
+
+      return false if hs[char] < 0
+    else
+      return false
+    end
+
+    i += 1
+  end
+
+  return true
+end
+
 puts is_anagram("anagram", "nagaram")
 puts is_anagram("rat", "car")
 puts is_anagram("ab", "a")
