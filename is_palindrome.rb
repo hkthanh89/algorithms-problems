@@ -28,3 +28,24 @@ def is_alphanum?(char)
   char.match?(/[[:alpha:]]/) ||
   char.match?(/[[:digit:]]/)
 end
+
+# @param {String} s
+# @return {Boolean}
+def is_palindrome(s)
+  s = s.downcase.gsub(/[^[:alnum:]]/, '')
+  length = s.length
+  return true if length == 0
+
+  i = 0
+  j = length - 1
+  while i < j
+    if s[i] == s[j]
+      i += 1
+      j -= 1
+    else
+      return false
+    end
+  end
+
+  return true
+end
